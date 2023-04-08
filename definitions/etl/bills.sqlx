@@ -1,0 +1,21 @@
+config {
+  type: "incremental",
+  schema: "demo_noodles",
+  uniqueKey: ["bill_id"]
+}
+
+SELECT * EXCEPT(rk)
+FROM (
+  SELECT 
+    bill_id, 
+    customer_id	,
+    store_id, 
+    product_id, 
+    sales_timestamp,
+    ROUND(SUM(total_cost) OVER (PARTITION BY bill_id),2) as total_cost, 
+    SUM(quantity) OVER (PARTITION BY bill_id) as total_quantity,
+    ROW_NUMBER() OVER (PARTITION BY bill_id) as rk 
+  FROM ${ref("demo_noodles","bill_facts")})
+WHERE rk = 1 
+
+
