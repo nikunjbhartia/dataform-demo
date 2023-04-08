@@ -1,0 +1,6 @@
+config {
+    type: "declaration",
+    schema: "demo__noodles",
+    name: "bill_facts",
+    description: "Final Bill Facts table merged with staging bill facts"
+}

@@ -1,0 +1,6 @@
+config {
+    type: "declaration",
+    schema: "demo_noodles",
+    name: "customers",
+    description: "Customer dimension table containing info about all the customers"
+}

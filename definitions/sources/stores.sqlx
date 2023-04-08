@@ -1,0 +1,6 @@
+config {
+    type: "declaration",
+    schema: "demo_noodles",
+    name: "stores",
+    description: "Stores dimension table containing info about all the stores"
+}

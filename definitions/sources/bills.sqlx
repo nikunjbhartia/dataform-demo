@@ -1,0 +1,6 @@
+config {
+    type: "declaration",
+    schema: "demo_noodles",
+    name: "bills",
+    description: "Bills dimension table containing info about all the bills aggregated using bill facts table"
+}

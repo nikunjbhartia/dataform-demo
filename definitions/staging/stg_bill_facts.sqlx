@@ -1,0 +1,6 @@
+config {
+    type: "declaration",
+    schema: "demo_staging_noodles",
+    name: "bill_facts",
+    description: "Bill information coming from staging gcs locations"
+}

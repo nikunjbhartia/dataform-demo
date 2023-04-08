@@ -1,8 +1,11 @@
 {
-  "defaultSchema": "dataform",
-  "assertionSchema": "dataform_assertions",
+  "assertionSchema": "demo_assertions_noodles",
   "warehouse": "bigquery",
   "defaultDatabase": "seeker-project-363308",
-  "defaultLocation": "US"
+  "defaultLocation": "us-central1",
+  "vars" : {
+    "targetSchema": "demo_noodles",
+    "stagingSchema": "demo_staging_noodles"
+  }
 }
     

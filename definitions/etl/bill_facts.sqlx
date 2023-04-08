@@ -1,0 +1,7 @@
+config {
+  type: "incremental",
+  schema: "demo_noodles",
+  uniqueKey: ["bill_id"]
+}
+SELECT * FROM ${ref("demo_staging_noodles","bill_facts")}
+${ when(incremental(), `WHERE sales_timestamp > (SELECT MAX(sales_timestamp) FROM ${self()})`) }
