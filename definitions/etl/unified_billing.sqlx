@@ -1,0 +1,28 @@
+config {
+  type: "view",
+  schema: "demo_noodles",
+}
+
+
+SELECT 
+  b.bill_id, 
+  b.product_id, 
+  b.customer_id, 
+  b.store_id, 
+  b.sales_timestamp, 
+  b.total_cost, 
+  b.quantity, 
+  c.customer_name, 
+  c.state as customer_state, 
+  c.geo_id as customer_geo_id, 
+  s.store_name, 
+  s.state as store_state, 
+  s.geo_id as store_geo_id, 
+  p.product_category
+FROM ${ref("demo_noodles", "bill_facts")} b
+JOIN ${ref("customers")} c 
+USING (customer_id)
+JOIN ${ref("stores")} s 
+USING (store_id )
+JOIN ${ref("products")} p 
+USING (product_id ) 
