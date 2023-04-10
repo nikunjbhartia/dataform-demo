@@ -1,7 +1,8 @@
 config {
   type: "incremental",
   schema: "demo_noodles",
-  uniqueKey: ["bill_id"]
+  uniqueKey: ["bill_id"],
+  tags: ["etl"]
 }
 
 SELECT * EXCEPT(rk)

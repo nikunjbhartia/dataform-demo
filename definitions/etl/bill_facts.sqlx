@@ -1,7 +1,24 @@
 config {
   type: "incremental",
   schema: "demo_noodles",
-  uniqueKey: ["bill_id"]
+  uniqueKey: ["bill_id"],
+  tags: ["etl"],
+  assertions: {
+    nonNull: ["bill_id", "customer_id", "product_id", "store_id"],
+    uniqueKey: ["bill_id"],
+    rowConditions: [
+      'sales_timestamp < CURRENT_TIMESTAMP()',
+      'bill_id > 0'
+    ]
+  }
 }
-SELECT * FROM ${ref("demo_staging_noodles","bill_facts")}
--- ${ when(incremental(), `WHERE sales_timestamp > (SELECT IFNULL(MAX(sales_timestamp), TIMESTAMP "1970-01-01") FROM ${self()})`) }
+
+SELECT 
+  * EXCEPT(rk)
+FROM (
+  SELECT 
+    *,
+    row_number() OVER (PARTITION BY bill_id ORDER BY sales_timestamp DESC ) as rk 
+  FROM ${ref("demo_staging_noodles","bill_facts")}
+  ${ when(incremental(), `WHERE date_key IN (format_date("%G%m%d", CURRENT_DATE), format_date("%G%m%d", CURRENT_DATE - 1))`) })
+WHERE rk = 1

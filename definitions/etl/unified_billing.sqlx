@@ -1,6 +1,7 @@
 config {
   type: "view",
   schema: "demo_noodles",
+  tags: ["etl"]
 }
 
 
