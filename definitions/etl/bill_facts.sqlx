@@ -7,7 +7,8 @@ config {
     nonNull: ["bill_id", "customer_id", "product_id", "store_id"],
     uniqueKey: ["bill_id"],
     rowConditions: [
-      'bill_id > 0'
+      'bill_id > 0',
+      'customer_id > 0'
     ]
   }
 }
