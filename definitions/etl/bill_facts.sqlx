@@ -7,7 +7,6 @@ config {
     nonNull: ["bill_id", "customer_id", "product_id", "store_id"],
     uniqueKey: ["bill_id"],
     rowConditions: [
-      'sales_timestamp < CURRENT_TIMESTAMP()',
       'bill_id > 0'
     ]
   }
